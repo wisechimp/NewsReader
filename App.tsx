@@ -1,44 +1,25 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
-import { parse } from 'rss-to-json'
-import { AxiosRequestConfig } from 'axios'
+import { NavigationContainer } from "@react-navigation/native"
+import { createNativeStackNavigator } from "@react-navigation/native-stack"
 
-interface NewsStoryData {
-  title: string,
-  description: string,
-  link: string,
-  image: string,
-  pubDate: string 
+import HeadlinesScreen from "./src/screens/Headlines/HeadlinesScreen"
+import NewsArticle from "./src/screens/NewsArticle/NewsArticle"
+
+type RootStackParamsList = {
+  Headlines: undefined,
+  NewsArticle: undefined
 }
 
-interface NewsStoriesData {
-  title: string,
-  description: string,
-  items: Array<NewsStoryData>
+const Stack = createNativeStackNavigator<RootStackParamsList>()
+
+const App = () => {
+  return(
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Headlines">
+        <Stack.Screen name="Headlines" component={HeadlinesScreen} />
+        <Stack.Screen name="NewsArticle" component={NewsArticle} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
 }
 
-export default function App() {
-  console.log('Hello!')
-  const newsStoriesData = () => {
-    return rssData = parse('https://www.svt.se/nyheter/rss.xml')
-      .then(rss => {console.log(JSON.stringify(rss, null, 3))}
-    }
-  return (
-    <View style={styles.container}>
-      <StatusBar style="auto" />
-      <FlatList 
-        data={newsStoriesData.items} 
-        renderItem={({item}) => <Text>item.title</Text>}
-      />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App
