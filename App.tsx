@@ -1,13 +1,10 @@
+import * as React from 'react'
 import { NavigationContainer } from "@react-navigation/native"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 
 import HeadlinesScreen from "./src/screens/Headlines/HeadlinesScreen"
 import NewsArticle from "./src/screens/NewsArticle/NewsArticle"
-
-type RootStackParamsList = {
-  Headlines: undefined,
-  NewsArticle: undefined
-}
+import RootStackParamsList from './src/types/RootStackParamsListType'
 
 const Stack = createNativeStackNavigator<RootStackParamsList>()
 
