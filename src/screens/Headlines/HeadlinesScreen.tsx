@@ -1,28 +1,15 @@
-import { useEffect, useState } from 'react'
-import { View, FlatList } from 'react-native';
+import React, { useEffect, useState } from 'react'
+import { View } from 'react-native';
 import * as rssParser from 'react-native-rss-parser'
 
 import NewsHeadlines from '../../components/NewsHeadlinesList/NewsHeadlinesList'
-import FlatListItem from '../../components/FlatListItem/FlatListItem'
+import NavigationProps from '../../types/NavigationPropsType'
+import NewsStoriesData from '../../types/NewsStoriesDataType'
 
-interface NewsStoryData {
-  title: string,
-  description: string,
-  link: string,
-  image: string,
-  pubDate: string 
-}
-
-interface NewsStoriesData {
-  title: string,
-  description: string,
-  items: Array<NewsStoryData>
-}
-
-const HeadlinesScreen = ({ navigation }) => {
+const HeadlinesScreen = ({ navigation }: NavigationProps) => {
 
 console.log('Hello!')
-  const [data, setData] = useState([])
+  const [data, setData] = useState<NewsStoriesData | undefined>(undefined)
 
   useEffect (() => {
     fetch('https://www.svt.se/nyheter/rss.xml')
