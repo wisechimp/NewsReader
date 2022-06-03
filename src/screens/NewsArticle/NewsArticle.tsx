@@ -1,20 +1,25 @@
 import * as React from 'react'
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
 import { WebView } from 'react-native-webview'
 
-interface NewsArticleProps {
-  link: string
-}
+import NewsArticleFooter from '../../components/NewsArticleFooter/NewsArticleFooter'
+import NavigationProps from '../../types/NavigationPropsType'
 
-const NewsArticle = ({ navigation, route }) => {
+const NewsArticle = ({ navigation, route }: NavigationProps) => {
   console.log(route)
-  const source: string = JSON.stringify(route.params.hyperlink.item.id).slice(1,-1)
+  let source = ""
+  if (route) {
+    source = JSON.stringify(route.params.newsStory.item.id).slice(1,-1)
+  }
   console.log(source)
 
   return(
     <View style={{flex: 1}}>
       <WebView
         source={{ uri: source }}
+        style={{flex: 1}}
+      />
+      <NewsArticleFooter
       />
     </View>
   )
