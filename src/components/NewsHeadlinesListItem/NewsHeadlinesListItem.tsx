@@ -8,16 +8,22 @@ interface FlatListItemProps {
 const FlatListItem = ({ title }: FlatListItemProps) => {
   
   return (
-    <View style={styles.viewHeight}>
-      <Text>{title}</Text>
+    <View style={styles.listItemView}>
+      <Text style={styles.listItemText}>{title}</Text>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-  viewHeight: {
-    height: 40,
+  listItemView: {
+    borderBottomColor: '#000',
+    borderBottomWidth: 1,
+    height: 64,
     justifyContent: 'center'
+  },
+  listItemText: {
+    fontSize: 18,
+    marginHorizontal: 16,
   }
 })
 
