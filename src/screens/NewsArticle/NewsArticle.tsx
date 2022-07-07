@@ -1,14 +1,17 @@
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import * as React from 'react'
 import { View } from 'react-native'
 import { WebView } from 'react-native-webview'
 
 import NewsArticleFooter from '../../components/NewsArticleFooter/NewsArticleFooter'
-import NavigationProps from '../../types/NavigationPropsType'
+import RootStackParamsList from '../../types/RootStackParamsListType'
 
-const NewsArticle = ({ navigation, route }: NavigationProps) => {
+type NewsArticleScreenProps = NativeStackScreenProps<RootStackParamsList, 'NewsArticle'>
+
+const NewsArticle = ({ route }: NewsArticleScreenProps) => {
   console.log(route)
   let source = ""
-  if (route) {
+  if (route.params) {
     source = JSON.stringify(route.params.newsStory.item.id).slice(1,-1)
   }
   console.log(source)

@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { View } from 'react-native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import * as rssParser from 'react-native-rss-parser'
 
 import NewsHeadlines from '../../components/NewsHeadlinesList/NewsHeadlinesList'
-import NavigationProps from '../../types/NavigationPropsType'
 import NewsStoriesData from '../../types/NewsStoriesDataType'
+import RootStackParamsList from '../../types/RootStackParamsListType';
 
-const HeadlinesScreen = ({ navigation }: NavigationProps) => {
+type HeadlinesScreenProps = NativeStackScreenProps<RootStackParamsList, 'Headlines'>
 
-console.log('Hello!')
+const HeadlinesScreen = ({ navigation }: HeadlinesScreenProps) => {
   const [data, setData] = useState<NewsStoriesData | undefined>(undefined)
 
   useEffect (() => {
